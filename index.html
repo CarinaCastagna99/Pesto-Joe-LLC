@@ -1,1 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pesto Joe | Quality Ingredients for Quality Time</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    :root {
+      --green-dark: #2d4a2d;
+      --green-mid: #4a7c4e;
+      --green-light: #7aab6e;
+      --cream: #f9f3e8;
+      --warm-white: #fffdf8;
+      --red: #b83232;
+      --gold: #c8973a;
+      --text-dark: #1e1e1e;
+      --text-mid: #4a4a4a;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--warm-white);
+      color: var(--text-dark);
+    }
+
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 60px;
+      background: rgba(255,253,248,0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--green-dark);
+      letter-spacing: 1px;
+      text-decoration: none;
+    }
+
+    .nav-logo span { color: var(--gold); }
+
+    .nav-cta {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 10px 26px;
+      border-radius: 30px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: background 0.3s;
+    }
+
+    .nav-cta:hover { background: var(--green-mid); }
+
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 30px 80px;
+      background:
+        linear-gradient(160deg, rgba(45,74,45,0.88) 0%, rgba(74,124,78,0.75) 50%, rgba(200,151,58,0.5) 100%),
+        url('https://images.unsplash.com/photo-1600335895229-6e75511892c8?w=1600&q=80') center/cover no-repeat;
+    }
+
+    .hero-inner { max-width: 780px; }
+
+    .hero-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.4);
+      color: #fff;
+      font-size: 0.78rem;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      padding: 6px 18px;
+      border-radius: 30px;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      color: #fff;
+      line-height: 1.15;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em { font-style: italic; color: #f5d88a; }
+
+    .hero p {
+      color: rgba(255,255,255,0.9);
+      font-size: 1.15rem;
+      line-height: 1.75;
+      max-width: 580px;
+      margin: 0 auto 40px;
+      font-weight: 300;
+    }
+
+    .hero-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 16px 44px;
+      border-radius: 40px;
+      font-size: 1rem;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.5px;
+      transition: transform 0.2s, background 0.3s;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+    }
+
+    .hero-btn:hover { background: #b07d28; transform: translateY(-2px); }
+
+    .divider {
+      text-align: center;
+      padding: 18px;
+      background: var(--green-dark);
+      color: rgba(255,255,255,0.75);
+      font-size: 0.85rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .story {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      min-height: 560px;
+    }
+
+    .story-image {
+      background:
+        linear-gradient(to bottom right, rgba(45,74,45,0.4), rgba(200,151,58,0.3)),
+        url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&q=80') center/cover no-repeat;
+      min-height: 480px;
+    }
+
+    .story-content {
+      background: var(--cream);
+      padding: 80px 70px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .section-label {
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .story-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.6rem);
+      color: var(--green-dark);
+      line-height: 1.2;
+      margin-bottom: 22px;
+    }
+
+    .story-content p {
+      color: var(--text-mid);
+      font-size: 1rem;
+      line-height: 1.8;
+      margin-bottom: 16px;
+    }
+
+    .story-content p:last-of-type { margin-bottom: 32px; }
+
+    .story-link {
+      display: inline-block;
+      color: var(--green-dark);
+      font-weight: 700;
+      font-size: 0.9rem;
+      text-decoration: none;
+      border-bottom: 2px solid var(--gold);
+      padding-bottom: 2px;
+      transition: color 0.2s;
+    }
+
+    .story-link:hover { color: var(--gold); }
+
+    .products {
+      padding: 100px 60px;
+      background: var(--warm-white);
+      text-align: center;
+    }
+
+    .products h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--green-dark);
+      margin-bottom: 14px;
+    }
+
+    .products .subtitle {
+      color: var(--text-mid);
+      font-size: 1rem;
+      max-width: 500px;
+      margin: 0 auto 60px;
+      line-height: 1.7;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .product-card {
+      background: var(--cream);
+      border-radius: 16px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
+    }
+
+    .product-img {
+      height: 220px;
+      width: 100%;
+      object-fit: cover;
+    }
+
+    .product-img.traditional {
+      background:
+        linear-gradient(135deg, rgba(45,74,45,0.6), rgba(122,171,110,0.4)),
+        url('https://images.unsplash.com/photo-1632778149955-e80f8ceca2e8?w=600&q=80') center/cover no-repeat;
+    }
+
+    .product-img.garlic {
+      background:
+        linear-gradient(135deg, rgba(200,151,58,0.5), rgba(45,74,45,0.5)),
+        url('https://images.unsplash.com/photo-1615485290382-441e4d049cb5?w=600&q=80') center/cover no-repeat;
+    }
+
+    .product-img.fra-diavolo {
+      background:
+        linear-gradient(135deg, rgba(184,50,50,0.6), rgba(45,74,45,0.4)),
+        url('https://images.unsplash.com/photo-1574484284002-952d92456975?w=600&q=80') center/cover no-repeat;
+    }
+
+    .product-body { padding: 28px 28px 32px; text-align: left; }
+
+    .product-name {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      color: var(--green-dark);
+      margin-bottom: 8px;
+    }
+
+    .product-desc {
+      font-size: 0.9rem;
+      color: var(--text-mid);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .product-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .product-price {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--green-dark);
+    }
+
+    .product-buy {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 8px 20px;
+      border-radius: 30px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.3s;
+    }
+
+    .product-buy:hover { background: var(--green-mid); }
+
+    .collab {
+      background: var(--green-dark);
+      color: #fff;
+      padding: 80px 60px;
+      text-align: center;
+    }
+
+    .collab .section-label { color: var(--gold); }
+
+    .collab h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      margin-bottom: 18px;
+    }
+
+    .collab p {
+      max-width: 600px;
+      margin: 0 auto 36px;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.85);
+      font-size: 1rem;
+    }
+
+    .collab-btn {
+      display: inline-block;
+      background: var(--gold);
+      color: #fff;
+      padding: 14px 40px;
+      border-radius: 40px;
+      font-size: 0.95rem;
+      font-weight: 700;
+      text-decoration: none;
+      transition: background 0.3s, transform 0.2s;
+    }
+
+    .collab-btn:hover { background: #b07d28; transform: translateY(-2px); }
+
+    .values {
+      padding: 100px 60px;
+      background: var(--cream);
+      text-align: center;
+    }
+
+    .values h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      color: var(--green-dark);
+      margin-bottom: 60px;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 48px;
+      max-width: 960px;
+      margin: 0 auto;
+    }
+
+    .value-icon { font-size: 2.4rem; margin-bottom: 16px; }
+
+    .value-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem;
+      color: var(--green-dark);
+      margin-bottom: 10px;
+    }
+
+    .value-text {
+      color: var(--text-mid);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .cta-banner {
+      padding: 100px 60px;
+      text-align: center;
+      background:
+        linear-gradient(160deg, rgba(45,74,45,0.92), rgba(74,124,78,0.85)),
+        url('https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=1400&q=80') center/cover no-repeat;
+    }
+
+    .cta-banner h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      color: #fff;
+      margin-bottom: 18px;
+    }
+
+    .cta-banner p {
+      color: rgba(255,255,255,0.88);
+      font-size: 1.05rem;
+      max-width: 520px;
+      margin: 0 auto 40px;
+      line-height: 1.75;
+    }
+
+    .cta-banner .hero-btn { background: #fff; color: var(--green-dark); }
+    .cta-banner .hero-btn:hover { background: var(--cream); }
+
+    footer {
+      background: #1a2e1a;
+      color: rgba(255,255,255,0.6);
+      padding: 48px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem;
+      color: #fff;
+    }
+
+    .footer-logo span { color: var(--gold); }
+    .footer-links { display: flex; gap: 28px; }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.6);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy { font-size: 0.8rem; }
+
+    @media (max-width: 900px) {
+      nav { padding: 16px 24px; }
+      .story { grid-template-columns: 1fr; }
+      .story-image { min-height: 300px; }
+      .story-content { padding: 60px 30px; }
+      .product-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .values-grid { grid-template-columns: 1fr; gap: 36px; }
+      .products, .values, .cta-banner, .collab { padding: 70px 24px; }
+      footer { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="#" class="nav-logo">Pesto <span>Joe</span></a>
+    <a href="https://www.pestojoe.com" target="_blank" class="nav-cta">Shop Now</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">Authentic Italian · Fresh Made · Family First</div>
+      <h1>More Than a Sauce.<br/><em>It's a Story.</em></h1>
+      <p>Pesto Joe was born from love, loss, and a deep Italian tradition. Every jar carries a recipe worth sharing — and a reason to gather.</p>
+      <a href="https://www.pestojoe.com" target="_blank" class="hero-btn">Shop Our Pesto →</a>
+    </div>
+  </section>
+
+  <div class="divider">✦ &nbsp; Quality Ingredients for Quality Time &nbsp; ✦</div>
+
+  <section class="story">
+    <div class="story-image"></div>
+    <div class="story-content">
+      <div class="section-label">Our Story</div>
+      <h2>Loss Into Legacy</h2>
+      <p>Pesto Joe was founded in memory of a father, a recipe, and a tradition too good to let go. What started as a way to keep someone at the table became a mission to bring families back together around food.</p>
+      <p>Life is busy. Schedules are tight. But life is also short — and you never know when your last meal with someone you love will be. Pesto Joe exists to make every meal a moment.</p>
+      <a href="https://www.pestojoe.com" target="_blank" class="story-link">Meet the founder →</a>
+    </div>
+  </section>
+
+  <section class="products">
+    <div class="section-label">Our Flavors</div>
+    <h2>Fresh Pesto, Three Ways</h2>
+    <p class="subtitle">Made with imported ingredients, crafted with love. We focus on quality ingredients so you can focus on quality time.</p>
+    <div class="product-grid">
+      <a href="https://www.pestojoe.com" target="_blank" class="product-card">
+        <div class="product-img traditional"></div>
+        <div class="product-body">
+          <div class="product-name">Traditional Pesto</div>
+          <p class="product-desc">Classic basil, pine nuts, and Parmigiano Reggiano. The recipe that started it all — bold, fresh, and unmistakably Italian.</p>
+          <div class="product-footer">
+            <span class="product-price">$13.99</span>
+            <span class="product-buy">Buy Now</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.pestojoe.com" target="_blank" class="product-card">
+        <div class="product-img garlic"></div>
+        <div class="product-body">
+          <div class="product-name">Garlic Lovers Pesto</div>
+          <p class="product-desc">Rich, bold, and deeply aromatic. For the ones who believe garlic makes everything better — and they're right.</p>
+          <div class="product-footer">
+            <span class="product-price">$13.99</span>
+            <span class="product-buy">Buy Now</span>
+          </div>
+        </div>
+      </a>
+      <a href="https://www.pestojoe.com" target="_blank" class="product-card">
+        <div class="product-img fra-diavolo"></div>
+        <div class="product-body">
+          <div class="product-name">Fra Diavolo Pesto</div>
+          <p class="product-desc">A little heat, a lot of heart. Our spicy twist on the classic — for those who like their meals with a little fire.</p>
+          <div class="product-footer">
+            <span class="product-price">$13.99</span>
+            <span class="product-buy">Buy Now</span>
+          </div>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <section class="collab">
+    <div class="section-label">Community Partnership</div>
+    <h2>Pirate Pesto 🏴‍☠️</h2>
+    <p>Proud to partner with Seton Hall University through our Pirate Pesto collection. Part of every sale supports Seton Hall student athletes. Because giving back is part of who we are.</p>
+    <a href="https://www.pestojoe.com" target="_blank" class="collab-btn">Shop Pirate Pesto →</a>
+  </section>
+
+  <section class="values">
+    <h2>Why Pesto Joe?</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">🌿</div>
+        <div class="value-title">Fresh & Premium</div>
+        <p class="value-text">Made with imported, high-quality ingredients. Never shelf-stable. Always fresh. Because your family deserves the real thing.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">🍝</div>
+        <div class="value-title">Incredibly Versatile</div>
+        <p class="value-text">Use it as a pasta sauce, sandwich spread, pizza base, or dip. Pesto Joe makes every meal effortless and elevated.</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">❤️</div>
+        <div class="value-title">Made with Purpose</div>
+        <p class="value-text">Every jar carries a story. When you buy Pesto Joe, you're not just buying sauce — you're becoming part of the mission.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-banner">
+    <h2>Make Every Meal a Moment</h2>
+    <p>Don't wait for a special occasion. Tonight's dinner can be the memory someone carries forever. Start with great pesto.</p>
+    <a href="https://www.pestojoe.com" target="_blank" class="hero-btn">Order Now — $13.99</a>
+  </section>
+
+  <footer>
+    <div class="footer-logo">Pesto <span>Joe</span></div>
+    <div class="footer-links">
+      <a href="https://www.pestojoe.com" target="_blank">Shop</a>
+      <a href="https://www.pestojoe.com" target="_blank">Our Story</a>
+      <a href="https://www.pestojoe.com" target="_blank">Contact</a>
+    </div>
+    <div class="footer-copy">© 2026 Pesto Joe LLC. All rights reserved.</div>
+  </footer>
+
+</body>
+</html>
